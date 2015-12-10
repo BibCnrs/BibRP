@@ -9,5 +9,6 @@ rp:
     - APPLI_LOGLEVEL
   working_dir: /var/www/html
   volumes:
-    - ./etc/shibboleth/:/etc/shibboleth/
-    - ./etc/apache2/sites-available:/etc/apache2/sites-available
+    - ./shibboleth/:/etc/shibboleth/
+    - ./ssl/:/etc/shibboleth/ssl/
+    - ./apache2/sites-available:/etc/apache2/sites-available
