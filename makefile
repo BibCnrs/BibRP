@@ -9,5 +9,8 @@ ifneq "$(SUPPORTS_MAKE_ARGS)" ""
   $(eval $(COMMAND_ARGS):;@:)
 endif
 
+run-local:
+	[ -f ./default.env.sh ] && . ./default.env.sh ; [ -f ./local.env.sh ] && . ./local.env.sh ; docker-compose up
+
 run-prod:
-	. ./prod.env.sh && docker-compose up
+	[ -f ./default.env.sh ] && . ./default.env.sh ;	[ -f ./prod.env.sh ] && . ./prod.env.sh ; docker-compose up
