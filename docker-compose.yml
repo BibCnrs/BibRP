@@ -1,7 +1,9 @@
 rp:
   image: docker-shibboleth-sp
+  links:
+    - bibcnrs:bibcnrs
   ports:
-    - 9443:443
+    - 443:443
   environment:
     - APPLI_SERVERNAME
     - APPLI_SERVERADMIN
@@ -11,3 +13,7 @@ rp:
     - ./shibboleth/:/etc/shibboleth/
     - ./ssl/:/etc/shibboleth/ssl/
     - ./apache2/sites-available:/etc/apache2/sites-available
+
+# serveur HTTP pour les tests accédé derrière le RP
+bibcnrs:
+  image: httpd:2.4
