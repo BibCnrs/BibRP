@@ -1,0 +1,13 @@
+rp:
+  image: docker-shibboleth-sp
+  ports:
+    - 9080:80
+    - 9443:443
+  environment:
+    - APPLI_SERVERNAME
+    - APPLI_SERVERADMIN
+    - APPLI_LOGLEVEL
+  working_dir: /var/www/html
+  volumes:
+    - ./etc/shibboleth/:/etc/shibboleth/
+    - ./etc/apache2/sites-available:/etc/apache2/sites-available
