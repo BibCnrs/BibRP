@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export APPLI_APACHE_SERVERNAME="https://bib.cnrs.fr"
+export APPLI_APACHE_SERVERNAME="https://bib-preprod.cnrs.fr"
 export APPLI_APACHE_SERVERADMIN="bibcnrs@inist.fr"
 export APPLI_APACHE_LOGLEVEL="info ssl:warn"
 

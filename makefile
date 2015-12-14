@@ -9,8 +9,19 @@ ifneq "$(SUPPORTS_MAKE_ARGS)" ""
   $(eval $(COMMAND_ARGS):;@:)
 endif
 
-run-local:
-	[ -f ./default.env.sh ] && . ./default.env.sh ; [ -f ./local.env.sh ] && . ./local.env.sh ; docker-compose up
+config-prod:
+	cp -f shibboleth/shibboleth2.dist.xml shibboleth/shibboleth2.xml
 
-run-prod:
-	[ -f ./default.env.sh ] && . ./default.env.sh ;	[ -f ./prod.env.sh ] && . ./prod.env.sh ; docker-compose up
+run-prod: config-prod
+	. ./prod.env.sh ; docker-compose up
+
+config-dev:
+	# patch shibboleth2.xml config to match dev needs
+	xmlstarlet ed \
+		-N sp="urn:mace:shibboleth:2.0:native:sp:config" \
+		-u "/sp:SPConfig/sp:ApplicationDefaults/@entityID" \
+		-v https://bibcnrs-preprod.cnrs.fr/sp \
+		shibboleth/shibboleth2.dist.xml > shibboleth/shibboleth2.xml
+
+run-dev: config-dev
+	. ./dev.env.sh ; docker-compose up

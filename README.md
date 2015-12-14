@@ -12,3 +12,10 @@ make run-prod
 Pour configurer l'application :
 - éditer les variables d'environnement dans ``prod.env.sh``
 - ... pour intégrer la clée privée SSL nécessaire au démon shibboleth (information sensible non présente dans le GIT)
+
+
+## MEMO
+
+xmlstarlet sel -N sp="urn:mace:shibboleth:2.0:native:sp:config" -t -v "/sp:SPConfig/sp:ApplicationDefaults/@entityID" shibboleth2-tmp.xml
+
+xmlstarlet ed -N sp="urn:mace:shibboleth:2.0:native:sp:config" -u "/sp:SPConfig/sp:ApplicationDefaults/@entityID" -v aze shibboleth2-tmp.xml

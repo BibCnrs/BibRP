@@ -5,9 +5,11 @@ rp:
   ports:
     - 443:443
   environment:
-    - APPLI_SERVERNAME
-    - APPLI_SERVERADMIN
-    - APPLI_LOGLEVEL
+    - http_proxy
+    - https_proxy
+    - APPLI_APACHE_SERVERNAME
+    - APPLI_APACHE_SERVERADMIN
+    - APPLI_APACHE_LOGLEVEL
   working_dir: /var/www/html
   volumes:
     - ./shibboleth/:/etc/shibboleth/
