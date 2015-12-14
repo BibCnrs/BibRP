@@ -25,14 +25,14 @@
         <Rule xsi:type="NOT">
             <Rule xsi:type="AttributeValueRegex" regex="@"/>
         </Rule>
-        <Rule xsi:type="saml:AttributeScopeMatchesShibMDScope"/>
+        <Rule xsi:type="saml:AttributeScopeMatchesShibMDScope" xmlns:saml="urn:mace:shibboleth:2.0:afp:mf:saml"/>
     </afp:PermitValueRule>
 
     <afp:AttributeFilterPolicy>
         <!-- This policy is in effect in all cases. -->
         <afp:PolicyRequirementRule xsi:type="ANY"/>
 
-        <!-- Filter out undefined affiliations and ensure only one primary. -->
+        <!-- interdit les affiliations non dÃ©finies en appliquant les valeurs possibles dÃ©finies ci-dessus -->
         <afp:AttributeRule attributeID="affiliation">
             <afp:PermitValueRule xsi:type="AND">
                 <RuleReference ref="eduPersonAffiliationValues"/>
@@ -51,19 +51,13 @@
         </afp:AttributeRule>
 
         <afp:AttributeRule attributeID="targeted-id">
-            <afp:PermitValueRuleReference ref="ScopingRules"/>
+            <afp:PermitValueRule xsi:type="ANY"/>
         </afp:AttributeRule>
-
-        <!-- Require NameQualifier/SPNameQualifier match IdP and SP entityID respectively. -->
-        <afp:AttributeRule attributeID="persistent-id">
-            <afp:PermitValueRule xsi:type="saml:NameIDQualifierString"/>
-        </afp:AttributeRule>
-
-        <!-- Catch-all that passes everything else through unmolested. -->
+     
+       <!-- Pour tous les autres attributs non filtres ci-dessus : permissif -->
         <afp:AttributeRule attributeID="*">
             <afp:PermitValueRule xsi:type="ANY"/>
         </afp:AttributeRule>
         
     </afp:AttributeFilterPolicy>
-
 </afp:AttributeFilterPolicyGroup>
