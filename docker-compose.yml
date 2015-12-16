@@ -25,3 +25,4 @@ bibcnrs:
   image: php:5.6-apache
   volumes:
     - ./tmp/index.php:/var/www/html/index.php
+    - ./tmp/index.php:/var/www/html/secure/index.php
