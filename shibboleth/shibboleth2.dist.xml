@@ -36,14 +36,18 @@
                   consistentAddress="true" handlerURL="/Shibboleth.sso"
                   checkAddress="false" handlerSSL="false" cookieProps="http">
 
-
+<!-- 
             <SessionInitiator type="Chaining" Location="/wayf" id="WAYF" relayState="cookie">
                 <SessionInitiator type="WAYF" defaultACSIndex="5" URL="https://federation.renater.fr/wayf"/>
             </SessionInitiator>
- 
-             
- <!--            <SessionInitiator type="Chaining" Location="/wayf" id="WAYF" relayState="cookie">
-                <SessionInitiator type="WAYF" defaultACSIndex="5" URL="https://discovery.renater.fr/test"/>
+  -->
+
+            <SSO discoveryProtocol="WAYF" discoveryURL="https://discovery.renater.fr/test">
+              SAML2 SAML1
+            </SSO>
+
+<!--             <SessionInitiator type="Chaining" Location="/wayf" id="WAYF" relayState="cookie">
+                <SessionInitiator type="WAYF" defaultACSIndex="5" URL="https://discovery.renater.fr/test/"/>
             </SessionInitiator>
  -->
             <!--
@@ -160,7 +164,7 @@
         <AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/>
 
         <!-- Simple file-based resolver for using a single keypair. -->
-        <CredentialResolver type="File" key="ssl/api.istex.fr/server.key" certificate="ssl/api.istex.fr/server.crt" />
+        <CredentialResolver type="File" key="ssl/server.key" certificate="ssl/server.crt" />
 
         <!--
         The default settings can be overridden by creating ApplicationOverride elements (see

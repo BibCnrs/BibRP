@@ -1,19 +1,14 @@
-
-# If the first argument is one of the supported commands...
-SUPPORTED_COMMANDS := restore-db save-db
-SUPPORTS_MAKE_ARGS := $(findstring $(firstword $(MAKECMDGOALS)), $(SUPPORTED_COMMANDS))
-ifneq "$(SUPPORTS_MAKE_ARGS)" ""
-  # use the rest as arguments for the command
-  COMMAND_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-  # ...and turn them into do-nothing targets
-  $(eval $(COMMAND_ARGS):;@:)
-endif
+default:
+	@echo "Usage:"
+	@echo "  make run-prod -> to run BibRP for https://bib.cnrs.fr"
+	@echo "  make run-dev  -> to run BibRP for https://bib-preprod.cnrs.fr"
+	@test -f /usr/bin/xmlstarlet || echo "Needs: sudo apt-get install --yes xmlstarlet"
 
 config-prod:
 	cp -f shibboleth/shibboleth2.dist.xml shibboleth/shibboleth2.xml
 
 run-prod: config-prod
-	. ./prod.env.sh ; docker-compose up
+	. ./prod.env.sh ; docker-compose up rp
 
 config-dev:
 	# patch shibboleth2.xml config to match dev needs
