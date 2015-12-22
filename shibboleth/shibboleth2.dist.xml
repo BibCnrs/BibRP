@@ -36,38 +36,16 @@
                   consistentAddress="true" handlerURL="/Shibboleth.sso"
                   checkAddress="false" handlerSSL="true" cookieProps="https">
 
-<!-- 
-            <SessionInitiator type="Chaining" Location="/wayf" id="WAYF" relayState="cookie">
-                <SessionInitiator type="WAYF" defaultACSIndex="5" URL="https://federation.renater.fr/wayf"/>
-            </SessionInitiator>
-  -->
-
-<!-- 
-            <SSO discoveryProtocol="WAYF" discoveryURL="https://discovery.renater.fr/test">
+            <!-- WAYF de la federation renater
+                 https://services.renater.fr/federation/docs/fiches/ds
+                 https://services.renater.fr/federation/faq/wayf
+             -->
+            <SSO discoveryProtocol="SAMLDS" discoveryURL="https://discovery.renater.fr/renater">
               SAML2 SAML1
             </SSO>
-
- -->
+ 
             <!-- [TEST OK] SP de TestShib https://www.testshib.org/configure.html -->
-            <SSO entityID="https://idp.testshib.org/idp/shibboleth">SAML2 SAML1</SSO>
-
-<!--
-            <SessionInitiator type="Chaining" Location="/wayf" id="WAYF" relayState="cookie">
-                <SessionInitiator type="WAYF" defaultACSIndex="5" URL="https://discovery.renater.fr/test/"/>
-            </SessionInitiator>
- -->
-            <!--
-            Configures SSO for a default IdP. To allow for >1 IdP, remove
-            entityID property and adjust discoveryURL to point to discovery service.
-            (Set discoveryProtocol to "WAYF" for legacy Shibboleth WAYF support.)
-            You can also override entityID on /Login query string, or in RequestMap/htaccess.
-            -->
-<!--
-            <SSO entityID="https://idp.example.org/idp/shibboleth"
-                 discoveryProtocol="SAMLDS" discoveryURL="https://ds.example.org/DS/WAYF">
-              SAML2 SAML1
-            </SSO>
--->
+            <!-- <SSO entityID="https://idp.testshib.org/idp/shibboleth">SAML2 SAML1</SSO> -->
 
             <!--
             md:AssertionConsumerService locations handle specific SSO protocol bindings,
