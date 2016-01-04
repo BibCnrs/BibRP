@@ -11,13 +11,15 @@ run-prod: cleanup-docker config-prod
 	. ./prod.env.sh ; docker-compose up rp
 
 config-dev:
-	# patch shibboleth2.xml config to match dev needs
+	# patch shibboleth2.xml config file
+	# service provider entityID
 	cp -f ./shibboleth/shibboleth2.dist.xml ./shibboleth/shibboleth2.xml
 	xmlstarlet ed --inplace \
 		-N sp="urn:mace:shibboleth:2.0:native:sp:config" \
 		-u "/sp:SPConfig/sp:ApplicationDefaults/@entityID" \
 		-v https://bib-preprod.cnrs.fr/sp \
 		shibboleth/shibboleth2.xml
+	# discovery service URL (wayf)
 	xmlstarlet ed --inplace \
 		-N sp="urn:mace:shibboleth:2.0:native:sp:config" \
 		-u "/sp:SPConfig/sp:ApplicationDefaults/Sessions/SSO/@discoveryURL" \
@@ -29,4 +31,4 @@ run-dev: cleanup-docker config-dev
 
 cleanup-docker:
 	test -z "$$(docker ps -a | grep docker-shibboleth-sp)" || \
-	  docker rm $$(docker ps -a | grep docker-shibboleth-sp | awk '{ print $$1 }')
+	  docker rm --force $$(docker ps -a | grep docker-shibboleth-sp | awk '{ print $$1 }')
