@@ -22,8 +22,8 @@ config-dev:
 	# discovery service URL (wayf)
 	xmlstarlet ed --inplace \
 		-N sp="urn:mace:shibboleth:2.0:native:sp:config" \
-		-u "/sp:SPConfig/sp:ApplicationDefaults/Sessions/SSO/@discoveryURL" \
-		-v https://discovery.renater.fr/test \
+		-u "/sp:SPConfig/sp:ApplicationDefaults/sp:Sessions/sp:SSO/@discoveryURL" \
+		-v https://discovery.renater.fr/kerphi \
 		shibboleth/shibboleth2.xml
 
 run-dev: cleanup-docker config-dev
