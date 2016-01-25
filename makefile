@@ -15,12 +15,14 @@ config-dev:
 	# service provider entityID
 	cp -f ./shibboleth/shibboleth2.dist.xml ./shibboleth/shibboleth2.xml
 	xmlstarlet ed --inplace \
-		-u "/_:SPConfig/_:ApplicationDefaults/@entityID" \
+		-N sp="urn:mace:shibboleth:2.0:native:sp:config" \
+		-u "/sp:SPConfig/sp:ApplicationDefaults/@entityID" \
 		-v https://bib-preprod.cnrs.fr/sp \
 		shibboleth/shibboleth2.xml
 	# discovery service URL (wayf)
 	xmlstarlet ed --inplace \
-		-u "/_:SPConfig/_:ApplicationDefaults/Sessions/SSO/@discoveryURL" \
+		-N sp="urn:mace:shibboleth:2.0:native:sp:config" \
+		-u "/sp:SPConfig/sp:ApplicationDefaults/Sessions/SSO/@discoveryURL" \
 		-v https://discovery.renater.fr/test \
 		shibboleth/shibboleth2.xml
 
