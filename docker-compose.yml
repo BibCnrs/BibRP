@@ -1,7 +1,5 @@
 rp:
   image: docker-shibboleth-sp
-  links:
-    - bibcnrs:bibcnrs
   ports:
     - 443:443
   environment:
@@ -16,14 +14,3 @@ rp:
     - ./shibboleth/:/etc/shibboleth/
     - ./ssl/:/etc/shibboleth/ssl/
     - ./apache2/sites-available:/etc/apache2/sites-available
-
-# # serveur HTTP pour les tests accédé derrière le RP
-# bibcnrs:
-#   image: httpd:2.4
-
-# serveur HTTP pour les tests accédé derrière le RP
-bibcnrs:
-  image: php:5.6-apache
-  volumes:
-    - ./tmp/index.php:/var/www/html/index.php
-    - ./tmp/index.php:/var/www/html/secure/index.php
