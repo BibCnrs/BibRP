@@ -10,6 +10,7 @@ rp:
     - APPLI_APACHE_SERVERNAME
     - APPLI_APACHE_SERVERADMIN
     - APPLI_APACHE_LOGLEVEL
+    - DOCKER_HOST_IP
   working_dir: /var/www/html
   volumes:
     - ./shibboleth/:/etc/shibboleth/
