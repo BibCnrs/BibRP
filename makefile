@@ -19,12 +19,6 @@ config-dev:
 		-u "/sp:SPConfig/sp:ApplicationDefaults/@entityID" \
 		-v https://bib-preprod.cnrs.fr/sp \
 		shibboleth/shibboleth2.xml
-	# discovery service URL (wayf)
-	xmlstarlet ed --inplace \
-		-N sp="urn:mace:shibboleth:2.0:native:sp:config" \
-		-u "/sp:SPConfig/sp:ApplicationDefaults/sp:Sessions/sp:SSO/@discoveryURL" \
-		-v https://discovery.renater.fr/test \
-		shibboleth/shibboleth2.xml
 
 run-dev: cleanup-docker config-dev
 	. ./dev.env.sh ; docker-compose up -d
