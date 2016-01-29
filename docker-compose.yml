@@ -1,7 +1,7 @@
 rp:
   image: docker-shibboleth-sp
   ports:
-    - 443:443
+    - 8443:443
   environment:
     - http_proxy
     - https_proxy
