@@ -7,7 +7,7 @@ default:
 config-prod:
 	cp -f shibboleth/shibboleth2.dist.xml shibboleth/shibboleth2.xml
 
-run-prod: cleanup-docker config-prod
+run-prod: cleanup-docker config-prod -d
 	. ./prod.env.sh ; docker-compose up rp
 
 config-dev:
@@ -27,7 +27,7 @@ config-dev:
 		shibboleth/shibboleth2.xml
 
 run-dev: cleanup-docker config-dev
-	. ./dev.env.sh ; docker-compose up
+	. ./dev.env.sh ; docker-compose up -d
 
 cleanup-docker:
 	test -z "$$(docker ps -a | grep docker-shibboleth-sp)" || \
