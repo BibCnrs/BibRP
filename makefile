@@ -7,8 +7,8 @@ default:
 config-prod:
 	cp -f shibboleth/shibboleth2.dist.xml shibboleth/shibboleth2.xml
 
-run-prod: cleanup-docker config-prod -d
-	. ./prod.env.sh ; docker-compose up rp
+run-prod: cleanup-docker config-prod
+	. ./prod.env.sh ; docker-compose up -d rp
 
 config-dev:
 	# patch shibboleth2.xml config file
