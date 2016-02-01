@@ -1,5 +1,5 @@
 rp:
-  image: docker-shibboleth-sp
+  image: bibcnrs/shibboleth-sp
   ports:
     - 8443:443
   environment:

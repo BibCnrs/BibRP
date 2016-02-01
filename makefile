@@ -24,5 +24,5 @@ run-dev: cleanup-docker config-dev
 	. ./dev.env.sh ; docker-compose up -d
 
 cleanup-docker:
-	test -z "$$(docker ps -a | grep docker-shibboleth-sp)" || \
-	  docker rm --force $$(docker ps -a | grep docker-shibboleth-sp | awk '{ print $$1 }')
+	test -z "$$(docker ps -a | grep bibrp_rp_1)" || \
+	  docker rm --force $$(docker ps -a | grep bibrp_rp_1 | awk '{ print $$1 }')
