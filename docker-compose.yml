@@ -1,28 +1,16 @@
 rp:
-  image: docker-shibboleth-sp
-  links:
-    - bibcnrs:bibcnrs
+  image: bibcnrs/shibboleth-sp
   ports:
-    - 443:443
+    - 8443:443
   environment:
     - http_proxy
     - https_proxy
     - APPLI_APACHE_SERVERNAME
     - APPLI_APACHE_SERVERADMIN
     - APPLI_APACHE_LOGLEVEL
+    - DOCKER_HOST_IP
   working_dir: /var/www/html
   volumes:
     - ./shibboleth/:/etc/shibboleth/
     - ./ssl/:/etc/shibboleth/ssl/
     - ./apache2/sites-available:/etc/apache2/sites-available
-
-# # serveur HTTP pour les tests accédé derrière le RP
-# bibcnrs:
-#   image: httpd:2.4
-
-# serveur HTTP pour les tests accédé derrière le RP
-bibcnrs:
-  image: php:5.6-apache
-  volumes:
-    - ./tmp/index.php:/var/www/html/index.php
-    - ./tmp/index.php:/var/www/html/secure/index.php
