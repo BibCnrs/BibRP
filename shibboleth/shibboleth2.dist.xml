@@ -1,7 +1,7 @@
 <SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
     xmlns:conf="urn:mace:shibboleth:2.0:native:sp:config"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"    
+    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
     xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
     clockSkew="180">
 
@@ -14,13 +14,13 @@
     To customize behavior for specific resources on Apache, and to link vhosts or
     resources to ApplicationOverride settings below, use web server options/commands.
     See https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPConfigurationElements for help.
-    
+
     For examples with the RequestMap XML syntax instead, see the example-shibboleth2.xml
     file, and the https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPRequestMapHowTo topic.
     -->
 
     <!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. -->
-    <ApplicationDefaults entityID="https://bib.cnrs.fr/sp"
+    <ApplicationDefaults entityID="https://replaceme/sp"
                          REMOTE_USER="uid mail eppn persistent-id targeted-id">
 
         <!--
@@ -43,7 +43,7 @@
             <SSO discoveryProtocol="SAMLDS" discoveryURL="https://discovery.renater.fr/renater">
               SAML2 SAML1
             </SSO>
- 
+
             <!-- [TEST OK] SP de TestShib https://www.testshib.org/configure.html -->
             <!-- <SSO entityID="https://idp.testshib.org/idp/shibboleth">SAML2 SAML1</SSO> -->
 
@@ -93,7 +93,7 @@
 
             <!-- SAML and local-only logout. -->
 <!--             <Logout>SAML2 Local</Logout> -->
-            
+
             <!-- Extension service that generates "approximate" metadata based on SP configuration. -->
             <Handler type="MetadataGenerator" Location="/Metadata" signing="false"/>
 
@@ -114,7 +114,7 @@
         <Errors supportContact="bibcnrs@inist.fr"
             helpLocation="/about.html"
             styleSheet="/shibboleth-sp/main.css"/>
-        
+
         <!--
         Metadonnees de la federation RENATER ESR.
         Les telechargements des metadonnees se fait par le reseau.
@@ -151,7 +151,7 @@
 
         <!-- Map to extract attributes from SAML assertions. -->
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
-        
+
         <!-- Use a SAML query if no attributes are supplied during SSO. -->
         <AttributeResolver type="Query" subjectMatch="true"/>
 
@@ -166,7 +166,7 @@
         the https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPApplicationOverride topic).
         Resource requests are mapped by web server commands, or the RequestMapper, to an
         applicationId setting.
-        
+
         Example of a second application (for a second vhost) that has a different entityID.
         Resources on the vhost would map to an applicationId of "admin":
         -->
@@ -174,7 +174,7 @@
         <ApplicationOverride id="admin" entityID="https://admin.example.org/shibboleth"/>
         -->
     </ApplicationDefaults>
-    
+
     <!-- Policies that determine how to process and authenticate runtime messages. -->
     <SecurityPolicyProvider type="XML" validate="true" path="security-policy.xml"/>
 
