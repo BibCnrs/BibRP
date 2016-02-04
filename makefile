@@ -14,7 +14,7 @@ config:
 	xmlstarlet ed --inplace \
 		-N sp="urn:mace:shibboleth:2.0:native:sp:config" \
 		-u "/sp:SPConfig/sp:ApplicationDefaults/@entityID" \
-		-v $(entityId) \
+		-v $(ENTITY_ID) \
 		shibboleth/shibboleth2.xml
 
 run-dev: cleanup-docker config
