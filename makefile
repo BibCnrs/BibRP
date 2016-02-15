@@ -5,7 +5,7 @@ default:
 	@test -f /usr/bin/xmlstarlet || echo "Needs: sudo apt-get install --yes xmlstarlet"
 
 run-prod: cleanup-docker config
-	. ./prod.env.sh ; docker-compose up -d rp
+	docker-compose up -d rp
 
 config:
 	# patch shibboleth2.xml config file
