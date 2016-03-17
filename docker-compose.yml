@@ -12,5 +12,5 @@ rp:
   working_dir: /var/www/html
   volumes:
     - ./shibboleth/:/etc/shibboleth/
-    - ./ssl/:/etc/shibboleth/ssl/
+    - ./shibboleth/ssl:/etc/shibboleth/ssl
     - ./apache2/sites-available:/etc/apache2/sites-available
