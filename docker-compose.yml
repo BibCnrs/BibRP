@@ -14,3 +14,4 @@ rp:
     - ./shibboleth/:/etc/shibboleth/
     - ./shibboleth/ssl:/etc/shibboleth/ssl
     - ./apache2/sites-available:/etc/apache2/sites-available
+    restart: always
