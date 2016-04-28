@@ -17,7 +17,7 @@ config: ## patch shibboleth2.xml config file service provider entityID
 		shibboleth/shibboleth2.xml
 
 run-dev: cleanup-docker config ## run BibRP for https://bib-preprod.cnrs.fr
-	. ./dev.env.sh ; docker-compose up -d rp
+	docker-compose -f docker-compose.dev.yml up rp
 
 cleanup-docker: ## remove docker image (needed for updating it)
 	test -z "$$(docker ps -a | grep bibrp_rp_1)" || \
