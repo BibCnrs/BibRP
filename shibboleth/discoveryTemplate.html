@@ -7,7 +7,7 @@
 
         <p>This web site requires you to login before proceeding. Please identify
         the domain name of your organization:</p>
-	
+
 		<form method="GET" action="<shibmlp action/>">
             <shibmlpif target>
                 <input type="hidden" name="target" value="<shibmlp target/>"/>
@@ -36,11 +36,11 @@
             <shibmlpif authnContextComparison>
                 <input type="hidden" name="authnContextComparison" value="<shibmlp authnContextComparison/>"/>
             </shibmlpif>
-            
+
 		    <input type="text" name="entityID" value="<shibmlp entityID/>">
 		    <input type="submit" value="Submit"/>
 		</form>
-		
+
 		<shibmlpif entityID>
 		<p>The system was unable to determine how to proceed using the value you supplied.</p>
 		</shibmlpif>
