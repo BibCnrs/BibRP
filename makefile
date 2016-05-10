@@ -6,7 +6,7 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 run-prod: cleanup-docker config ## run BibRP using environment variable
-	docker-compose up -d rp
+	docker-compose -f docker-compose.prod.yml up -d rp
 
 config: ## patch shibboleth2.xml config file service provider entityID
 	cp -f ./shibboleth/shibboleth2.dist.xml ./shibboleth/shibboleth2.xml
