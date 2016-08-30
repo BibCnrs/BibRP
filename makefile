@@ -9,6 +9,7 @@ run-prod: cleanup-docker config ## run BibRP using environment variable
 	docker-compose -f docker-compose.prod.yml up -d rp
 
 config: ## patch shibboleth2.xml config file service provider entityID
+	test -f /usr/bin/xmlstarlet || (echo "Needs: sudo apt-get install --yes xmlstarlet" && exit 1)
 	cp -f ./shibboleth/shibboleth2.dist.xml ./shibboleth/shibboleth2.xml
 	xmlstarlet ed --inplace \
 		-N sp="urn:mace:shibboleth:2.0:native:sp:config" \
