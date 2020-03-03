@@ -1,5 +1,5 @@
 rp:
-    image: bibcnrs/shibboleth-sp
+    image: bibcnrs/shibboleth-sp3
     ports:
         - 443:443
     environment:
@@ -11,6 +11,7 @@ rp:
         DOCKER_HOST_IP: ${DOCKER_HOST_IP}
     working_dir: /var/www/html
     volumes:
+        - ./shibboleth/log:/var/log/shibboleth/
         - ./shibboleth/:/etc/shibboleth/
         - ./shibboleth/ssl:/etc/shibboleth/ssl
         - ./apache2/sites-available:/etc/apache2/sites-available

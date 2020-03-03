@@ -12,18 +12,18 @@
 
     <!-- L'attribut persistent-id qui permet un acces anonyme a l'utilisateur tout en le reconnaissant d'une session a une autre -->
 
-    <!-- 1/ La version obsolete, decodee comme un 'scoped string' -->
-    <Attribute name="urn:mace:dir:attribute-def:eduPersonTargetedID" id="targeted-id">
-        <AttributeDecoder xsi:type="ScopedAttributeDecoder"/>
-        <!-- <AttributeDecoder xsi:type="NameIDFromScopedAttributeDecoder" formatter="$NameQualifier!$SPNameQualifier!$Name"/> -->
-    </Attribute>
-
     <!-- 2/ un decodeur alternatif permettant de transformer la version obsolete en nopuvelle version -->
     <!--
     <Attribute name="urn:mace:dir:attribute-def:eduPersonTargetedID" id="persistent-id">
         <AttributeDecoder xsi:type="NameIDFromScopedAttributeDecoder" formatter="$NameQualifier!$SPNameQualifier!$Name"/>
     </Attribute>
     -->
+
+     <!-- 1/ La version obsolete, decodee comme un 'scoped string' -->
+    <!--Attribute name="urn:mace:dir:attribute-def:eduPersonTargetedID" id="targeted-id">
+        <AttributeDecoder xsi:type="ScopedAttributeDecoder"/-->
+        <!-- <AttributeDecoder xsi:type="NameIDFromScopedAttributeDecoder" formatter="$NameQualifier!$SPNameQualifier!$Name"/> -->
+    <!--/Attribute-->
 
     <!-- 3/ la nouvelle version (a noter le nom en OID) -->
     <Attribute name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" id="persistent-id">
