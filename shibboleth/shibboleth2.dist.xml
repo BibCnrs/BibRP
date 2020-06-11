@@ -123,18 +123,18 @@
         <MetadataProvider type="Chaining">
 
             <!-- Metadonnées de la fédération RENATER -->
-            <MetadataProvider type="XML" url="https://metadata.federation.renater.fr/renater/main/main-idps-renater-metadata.xml"
-                  backingFilePath="idps-renater-metadata.xml" reloadInterval="3600" id="idps-renater">
-                <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-                <MetadataFilter type="Signature" certificate="renater-metadata-signing-cert-2016.pem"/>
+            <MetadataProvider type="XML" url="https://janus.cnrs.fr/metadata/cnrs-metadata.xml"
+                  backingFilePath="cnrs-metadata.xml" reloadInterval="3600" id="cnrs">
+                <MetadataFilter type="Whitelist"/>
+                <Include>https://janus.cnrs.fr/idp</Include>
             </MetadataProvider>
 
-            <!-- Metadonnées de la fédération RENATER de test -->
+            <!-- Metadonnées de la fédération RENATER de test
             <MetadataProvider type="XML" url="https://metadata.federation.renater.fr/test/preview/preview-idps-renater-test-metadata.xml"
                   backingFilePath="renater-test-metadata.xml" reloadInterval="3600" id="renater-test">
                 <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
                 <MetadataFilter type="Signature" certificate="metadata-federation-renater.crt"/>
-            </MetadataProvider>
+            </MetadataProvider> -->
 
             <!-- Metadonnées de TestShib https://www.testshib.org/configure.html -->
             <!--MetadataProvider type="XML" url="http://www.testshib.org/metadata/testshib-providers.xml"
