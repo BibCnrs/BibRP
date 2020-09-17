@@ -1,4 +1,7 @@
-rp:
+version: "3.5"
+
+services:
+  rp:
     image: bibcnrs/shibboleth-sp3
     ports:
         - 8443:443
@@ -16,3 +19,9 @@ rp:
         - ./shibboleth/ssl:/etc/shibboleth/ssl
         - ./apache2/sites-available:/etc/apache2/sites-available
     restart: always
+    networks:
+      - bibfrontend
+
+networks:
+  bibfrontend:
+    external: true
