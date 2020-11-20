@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   rp:
-    image: vsnexus-registry.intra.inist.fr:8083/bibcnrs/shibboleth-sp3
+    image: vxnexus-registry.intra.inist.fr:8083/bibcnrs/shibboleth-sp3
     ports:
         - 8443:443
     environment:
