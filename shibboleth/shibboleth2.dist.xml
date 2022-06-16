@@ -98,9 +98,17 @@
             <!-- JSON feed of discovery information. -->
             <Handler type="DiscoveryFeed" Location="/DiscoFeed"/>
 
-            <!-- Seession initiator redirecting directly to janus identity provider, (no WAYF) -->
+            <!-- Seession initiator redirecting directly to janus identity provider, (no WAYF) PROD -->
             <SessionInitiator type="Chaining" Location="/Login" isDefault="true" id="Intranet"
                 relayState="cookie" entityID="https://janus.cnrs.fr/idp">
+               
+                <!-- Seession initiator redirecting directly to janus identity provider, (no WAYF) TEST
+      <SessionInitiator type="Chaining" Location="/Login" isDefault="true" id="Intranet" relayState="cookie" entityID="https://janus-int-test.cnrs.fr/idp-test">
+        -->
+                 <!-- Seession initiator redirecting directly to janus identity provider, (no WAYF) REC 
+      <SessionInitiator type="Chaining" Location="/Login" isDefault="true" id="Intranet" relayState="cookie" entityID="https://janus-rec.cnrs.fr/idp/shibboleth">
+    -->
+          
                 <SessionInitiator type="SAML2" defaultACSIndex="1" template="bindingTemplate.html" acsByIndex="false"/>
                 <SessionInitiator type="Shib1" defaultACSIndex="5"/>
             </SessionInitiator>
@@ -122,19 +130,23 @@
         -->
         <MetadataProvider type="Chaining">
 
-            <!-- Metadonnées de la fédération RENATER -->
-            <MetadataProvider type="XML" url="https://janus.cnrs.fr/metadata/cnrs-metadata.xml"
-                  backingFilePath="cnrs-metadata.xml" reloadInterval="3600" id="cnrs">
-                <MetadataFilter type="Whitelist"/>
-                <Include>https://janus.cnrs.fr/idp</Include>
-            </MetadataProvider>
+            <!-- Metadonnées de la fédération locale CNRS de PROD -->
+            <MetadataProvider type="XML" url="https://pub.federation.renater.fr/metadata/cnrs-prod-ay24y/preview/preview-renater-cnrs-prod-metadata.xml" backingFilePath="preview-renater-cnrs-prod-metadata.xml" reloadInterval="3600">
+                <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+                <MetadataFilter type="Signature" certificate="renater-metadata-signing-cert-2016.pem"/>
 
-            <!-- Metadonnées de la fédération RENATER de test
+            <!-- Metadonnées de la fédération locale CNRS de test
             <MetadataProvider type="XML" url="https://metadata.federation.renater.fr/test/preview/preview-idps-renater-test-metadata.xml"
                   backingFilePath="renater-test-metadata.xml" reloadInterval="3600" id="renater-test">
                 <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
                 <MetadataFilter type="Signature" certificate="metadata-federation-renater.crt"/>
             </MetadataProvider> -->
+            
+            <!-- Metadonnées de la fédération locale CNRS de recette
+             <MetadataProvider type="XML" url="https://pub.federation.renater.fr/metadata/cnrs-rec-130jd/preview/preview-renater-cnrs-rec-metadata.xml" backingFilePath="preview-renater-cnrs-rec-metadata.xml" reloadInterval="3600">
+                <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+                <MetadataFilter type="Signature" certificate="renater-metadata-signing-cert-2016.pem"/>
+             -->
 
             <!-- Metadonnées de TestShib https://www.testshib.org/configure.html -->
             <!--MetadataProvider type="XML" url="http://www.testshib.org/metadata/testshib-providers.xml"
